@@ -21,9 +21,30 @@ docker run --name {CONTAINER_NAME} -p 5900:5900 -dit arvinskushwaha/ros-noetic-d
 **Can also add -v flag to mount folders to the container to achieve file sharing between host and container*
 
 
+**Run**<br>
+To run the container, make sure the container listed in Docker GUI is started, then in command line run:
+```
+docker exec -it {CONTAINER_NAME} bash
+```
+In windows I recommend making a batch script to run the container, make a new file called **run-noetic.bat**, in the file write:
+```bat
+@echo off
+docker exec -it {CONTAINER_NAME} bash
+```
+So running the container becomes simpler, simply double click on run-noetic.bat or in cmd navigate to it and run:
+```cmd
+ros-noetic.bat
+```
+
+**Login**<br>
+When entering this container, the user is automatically root user. To login, use the script provided in root folder called login. In other words when terminal is first opened, run:
+```bash
+./login
+```
+**The login script is located in /root* <br>
 
 **Source ROS**<br>
-**No need to**, since already preconfigured .bashrc file to automatically run: source /opt/ros/noetic/setup.bash<br><br>
+**No need to**, since already preconfigured .bashrc file to automatically run: source /opt/ros/noetic/setup.bash. As long as you logged in then it should work.<br><br>
 To confirm ros is functional, run:
 ```bash
 roscore
@@ -57,35 +78,15 @@ process[rosout-1]: started with pid [135]
 started core service [/rosout]
 ```
 
-To exit the container, simply type:
+To exit the container, simply type (if you logged in "exit" will logout, then "exit" again to exit container):
 ```bash
 exit
 ```
 
-**Run**<br>
-To run the container again, make sure the container listed in Docker GUI is started, then in command line run:
-```
-docker exec -it {CONTAINER_NAME} bash
-```
-In windows I recommend making a batch script to run the container, make a new file called **run-noetic.bat**, in the file write:
-```bat
-@echo off
-docker exec -it {CONTAINER_NAME} bash
-```
-So running the container becomes simpler, simply double click on run-noetic.bat or in cmd navigate to it and run:
-```cmd
-ros-noetic.bat
-```
 Usually recommended to update the package manager and upgrade the current packages
 ```
 sudo apt-get update
 sudo apt-get upgrade
-```
-
-**Login**<br>
-When entering this container, the user is automatically root user. To login, use the script provided in root folder called login. In other words when terminal is first opened, run:
-```bash
-./login
 ```
 
 ## 3. Connect via VNC
@@ -93,5 +94,3 @@ Use any VNC viewer application.
 
 Under Remote Host field, type: localhost:5900, and connect.
 Or if it is separated into host and port, then host as localhost and port as 5900.
-
-
