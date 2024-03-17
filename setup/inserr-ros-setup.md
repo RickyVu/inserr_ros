@@ -22,14 +22,14 @@ catkin_make
 - src folder under it is where you place ROS packages
 
 
-## 2. Clone INSERR-ROS
+## 2. Clone inserr_ros
 **CODE WITHIN THIS SECTION SHOULD ONLY RUN ONCE** <br>
 Right now there are no packages installed <br>
-Clone the INSERR-ROS package from github
+Clone the inserr_ros package from github
 ```bash
 cd src
-git clone https://github.com/RickyVu/INSERR-ROS.git
-# Cloning into 'INSERR-ROS'...
+git clone https://github.com/RickyVu/inserr_ros.git
+# Cloning into 'inserr_ros'...
 # remote: Enumerating objects: 25, done.
 # remote: Counting objects: 100% (25/25), done.
 # remote: Compressing objects: 100% (19/19), done.
@@ -39,11 +39,11 @@ git clone https://github.com/RickyVu/INSERR-ROS.git
 
 Don't forget to install all the required python libraries
 ```bash
-cd INSERR-ROS
+cd inserr_ros
 pip3 install -r requirements.txt
 ```
-## 3. INSERR-ROS guide
-This INSERR-ROS directory is a ROS package and also a git repository
+## 3. inserr_ros guide
+This inserr_ros directory is a ROS package and also a git repository
 
 
 Most important files are these:
@@ -53,7 +53,7 @@ ros_ws/
 |-- devel
 |   |-- setup.bash
 `-- src
-    `-- INSERR-ROS
+    `-- inserr_ros
         |-- CMakeLists.txt
         |-- README.md
         |-- package.xml
@@ -78,7 +78,7 @@ Program files are placed in scripts folder, classes and functions that can be im
 ## 4. Source Control
 When using VS Code Source Control, by default it will say there are no git repositories initialized. Need to first run:
 ```bash
-git config --global --add safe.directory ~/ros_ws/src/INSERR-ROS
+git config --global --add safe.directory ~/ros_ws/src/inserr_ros
 git config --global user.email "you@example.com"
 git config --global user.name "Your Name"
 ```
