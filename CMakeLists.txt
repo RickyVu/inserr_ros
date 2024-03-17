@@ -154,6 +154,8 @@ include_directories(
 ## Install ##
 #############
 
+catkin_python_setup()
+
 # all install targets should use catkin DESTINATION variables
 # See http://ros.org/doc/api/catkin/html/adv_user_guide/variables.html
 

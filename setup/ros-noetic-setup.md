@@ -17,9 +17,7 @@ Create a container using this command, replace {CONTAINER_NAME} with your prefer
 ```
 docker run --name {CONTAINER_NAME} --net=host -it osrf/ros:noetic-desktop-full bash
 ```
-```
-docker run --name {CONTAINER_NAME} -p 5900:5900 -dit arvinskushwaha/ros-noetic-desktop-vnc bash
-```
+
 **I personally ran : docker run --name ros-noetic --net=host -it osrf/ros:noetic-desktop-full bash* <br>
 **Can also add -v flag to mount folders to the container to achieve file sharing between host and container*
 
