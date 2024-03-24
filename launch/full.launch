@@ -1,0 +1,17 @@
+<launch>
+    <!-- Load parameters first -->
+    <!--<node name="config_loader" pkg="inserr_ros" type="ConfigLoader.py" />-->
+
+    <!-- Run after all parameters are loaded -->
+    <rosparam command="load" file="$(find inserr_ros)/config/nodes.yaml"/>
+    <rosparam command="load" file="$(find inserr_ros)/config/thrusters.yaml"/>
+    <node name="input_simulator" pkg="inserr_ros" type="InputSimulator.py"/>
+    <node name="thruster_power" pkg="inserr_ros" type="ThrusterPower.py">
+        <!--<param name="~rate" type="int" value="1" />-->
+        <!--<param name="ThrusterPower_rate" value="$(arg ThrusterPower_rate)"/>-->
+    </node>
+    <node name="thrusters" pkg="inserr_ros" type="Thrusters.py">
+        <!--<param name="Thrusters_CG" value="$(arg Thrusters_CG)"/>-->
+        <!--<param name="Thrusters_step" value="$(arg Thrusters_step)"/>-->
+    </node>
+</launch>

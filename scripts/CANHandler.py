@@ -1,14 +1,31 @@
 #!/usr/bin/env python
+
+'''
+CANHandler Module
+
+Subscribe Topics:
+
+can.send
+    "address": <hexadecimal>
+    "data" <bytearrray>
+
+Publish Topics:
+
+can.receive.<arbitration_id>:
+    "data" <bytearray>
+    "extra" <dictionary>
+	"timestamp" <float>
+
+'''
+
 import can
 import rospy
 import pubsub.json_message
 
-class CAN_Handler:
+class CANHandler:
     def __init__(self, baudrate):
-        rospy.init_node('CAN_Handler', anonymous=True)
-
-        self.pub = pubsub.json_message.Publisher('ethernet.send', queue_size=10)
-        pubsub.json_message.Subscriber('can.send', self.message_listener)
+        #self.pub = pubsub.json_message.Publisher('ethernet/send', queue_size=10)
+        pubsub.json_message.Subscriber('inserr/can/thruster', self.message_listener)
         
         
         self.bus = can.interface.Bus(bustype="socketcan", channel="can0", bitrate=baudrate)
@@ -22,20 +39,25 @@ class CAN_Handler:
             print("Message not sent:", [e, msg])
 
     def run(pub):
-        msg = can.Bus().recv(0)
+        pass
+        #msg = can.Bus().recv(0)
         
+        """
         if msg is not None:
             data = msg.data
             data_array = [int.from_bytes(byte, byteorder='big') for byte in data]
             
             message={"type": "CAN", "address": msg.arbitration_id, "data": data_array}
             pub.publish(message)
+        """
 
 if __name__ == '__main__':
     try:
-        can_handler = CAN_Handler(250000)
+        rospy.init_node('can_handler', anonymous=True)
         rate_param = rospy.get_param('~rate', 10.0)
         rate = rospy.Rate(rate_param)
+        
+        can_handler = CANHandler(250000)
 
         while not rospy.is_shutdown():
             can_handler.run()
